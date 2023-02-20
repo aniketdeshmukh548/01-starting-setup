@@ -1,7 +1,7 @@
 import React from "react";
-//import ExpenseItem from "./Components/ExpenseItem";
 import NewExpense from "./Components/NewExpense/NewExpense";
 import Expenses from "./Components/Expenses/Expenses";
+import ExpensesFilter from "./Components/Expenses/ExpensesFilter";
 
 const App = () => {
   const expenses = [
@@ -34,6 +34,14 @@ const App = () => {
       location: "Mumbai",
     },
   ];
+const addExpenseHandler=(expense)=>{
+      const x={
+        ...expenses,expense
+      }
+      expenses.push(expense)
+      console.log(x)
+}
+
   // return React.createElement(
   //   "div",
   //   {},
@@ -42,7 +50,8 @@ const App = () => {
   // );
   return (
     <div>
-      <NewExpense />
+      <NewExpense onaddExpense={addExpenseHandler} />
+      <ExpensesFilter />
       <Expenses items={expenses}></Expenses>
       {/* <ExpenseItem title={expenses[0].title} amount={expenses[0].amount} date={expenses[0].date} location={expenses[0].location}></ExpenseItem>
       <ExpenseItem title={expenses[1].title} amount={expenses[1].amount} date={expenses[1].date} location={expenses[1].location}></ExpenseItem>
