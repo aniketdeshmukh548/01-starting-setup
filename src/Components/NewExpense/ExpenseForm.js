@@ -7,24 +7,50 @@ const ExpenseForm = () => {
     const[enteredamt,setenteredamt]=useState('')
     const[enteredloc,setenteredloc]=useState('')
     const[entereddate,setentereddate]=useState('')
+    // const [userInput,setUserInput]=useState({
+    //     enteredTitle:'',enteredamt:'',enteredloc:'',entereddate:'',
+    // })
     const titleChange=(event)=>{
         setenteredTitle(event.target.value)
-        console.log(event.target.value)
+        // setUserInput({
+        //     ...userInput,enteredTitle:event.target.value
+        // })
+        // setUserInput((prevState=>{
+        //     return {
+        //         ...prevState,enteredTitle:event.target.value
+        //     }
+        // }))
     }
     const amtChange=(event)=>{
         setenteredamt(event.target.value)
-        console.log(event.target.value)
+        // console.log(event.target.value)
+        // setUserInput({
+        //     ...userInput,enteredamt:event.target.value
+        // })
     }
     const locChange=(event)=>{
         setenteredloc(event.target.value)
-        console.log(event.target.value)
+        // console.log(event.target.value)
+        // setUserInput({
+        //     ...userInput,enteredloc:event.target.value
+        // })
     }
     const dateChange=(event)=>{
         setentereddate(event.target.value)
-        console.log(event.target.value)
+        // console.log(event.target.value)
+        // setUserInput({
+        //     ...userInput,entereddate:event.target.value
+        // })
+    }
+    const submitHandler=(event)=>{
+        event.preventDefault();
+        const expenseData ={
+            title:enteredTitle,amount:enteredamt,location:enteredloc,date:new Date(entereddate),
+        }
+        console.log(expenseData)
     }
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <div className='new-expense__controls'>
         <div className='new-expense__control'>
           <label>Title</label>
