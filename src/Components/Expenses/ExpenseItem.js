@@ -1,16 +1,16 @@
-import React from "react";
+import React,{useState} from "react";
 import ExpenseDate from "./ExpenseDate";
 import Card from '../UI/Card';
 import "./ExpenseItem.css";
 //import ExpenseDetails from "./ExpenseDetails";
 const ExpenseItem=(props)=> {
-  let title=props.title;
-  let amount=props.amount
-  const clickHandler=()=>{
-    title='updated';
+  const[amount,newAmount]=useState(props.amount)
+  const amtHandler=()=>{
+    newAmount('100')
   }
-  const deleteEvent=()=>{
-    amount='deleted';
+  const[title,setTitle]=useState(props.title)
+  const clickHandler=()=>{
+    setTitle('updated');
   }
   return (
     <Card className="expense-item">
@@ -22,7 +22,7 @@ const ExpenseItem=(props)=> {
         <div className="expense-item__price">Rs.{amount}/-</div>
       </div>
       <button onClick={clickHandler}>Change Title</button>
-      <button onClick={deleteEvent}>Delete</button>
+      <button onClick={amtHandler}>Edit Amount</button>
     </Card>
   );
 }
