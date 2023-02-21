@@ -17,9 +17,9 @@ const ExpenseItem=(props)=> {
       <ExpenseDate date={props.date} />
       <div className="expense-item__description">
         {/* <ExpenseDetails title={props.title} amount={props.amount} location={props.location}></ExpenseDetails> */}
-        <h2 className="expense-item h2">{title}</h2>
+        <h2 className="expense-item h2">{props.title}</h2>
         <div className="expense-item__location">{props.location}</div>
-        <div className="expense-item__price">Rs.{amount}/-</div>
+        <div className="expense-item__price">Rs.{props.amount}/-</div>
       </div>
       <button onClick={clickHandler}>Change Title</button>
       <button onClick={amtHandler}>Edit Amount</button>
