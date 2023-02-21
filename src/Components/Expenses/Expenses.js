@@ -10,9 +10,22 @@ const Expenses = (props) => {
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
-  const filteredExpenses = props.items.filter(expense => {
+  const filteredExpenses = props.items.filter((expense) => {
     return expense.date.getFullYear().toString() === filteredYear;
   });
+
+  let expenseContent=<p>No Data for selected year</p>
+  if(filteredExpenses.length > 0){
+    expenseContent=filteredExpenses.map((expense) => (
+      <ExpenseItem
+        key={expense.id}
+        title={expense.title}
+        amount={expense.amount}
+        location={expense.location}
+        date={expense.date}
+      />
+    ))
+  }
   return (
     <Card className="expenses">
       <div>
@@ -20,15 +33,30 @@ const Expenses = (props) => {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-        {filteredExpenses.map((expense) => (
-          <ExpenseItem
-            key={expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            location={expense.location}
-            date={expense.date}
-          />
-        ))}
+        {expenseContent}
+        {/* {filteredExpenses.length === 0 && <p>No Data for selected year</p>}
+        {filteredExpenses.length > 0 && filteredExpenses.map((expense) => (
+            <ExpenseItem
+              key={expense.id}
+              title={expense.title}
+              amount={expense.amount}
+              location={expense.location}
+              date={expense.date}
+            />
+          ))} */}
+        {/* {filteredExpenses.length === 0 ?(
+          <p>No Data for selected year</p> //we can use alert as well
+        ) : (
+          filteredExpenses.map((expense) => (
+            <ExpenseItem
+              key={expense.id}
+              title={expense.title}
+              amount={expense.amount}
+              location={expense.location}
+              date={expense.date}
+            />
+          ))
+        )} */}
         {/* {props.items.map((expense) => (
           <ExpenseItem
             key={expense.id}
